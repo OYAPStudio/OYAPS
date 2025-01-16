@@ -33,3 +33,26 @@ body {
     scrollbar-width: none;
   }
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+/* Your existing global styles */
+
+/* Hide scrollbar for the entire website */
+/* For Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* For IE and Edge */
+* {
+  -ms-overflow-style: none;
+}
+
+/* Ensure smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}

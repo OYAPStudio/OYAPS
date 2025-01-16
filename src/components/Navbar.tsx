@@ -39,7 +39,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <div className="relative w-8 h-8 mr-2">
+                <div className="relative w-12 h-12 mr-2">
                   <Image
                     src="/images/logo.png"
                     alt="OYAPS Logo"

@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar';
 import AnimatedBackground from '../components/AnimatedBackground';
 import CustomCursor from '../components/CustomCursor';
 import SectionTransition from '../components/SectionTransition';
+import ProjectsSection from '../components/ProjectsSection';
+
 
 export default function Home() {
   return (
@@ -23,6 +25,10 @@ export default function Home() {
         <Hero />
       </SectionTransition>
       
+      <SectionTransition from="dark" to="dark">
+      <ProjectsSection />
+      </SectionTransition>
+
       <SectionTransition from="dark" to="dark">
         <TeamSection />
       </SectionTransition>

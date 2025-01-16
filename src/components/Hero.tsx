@@ -3,9 +3,20 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const Hero = () => {
+  const scrollToProjects = () => {
+    // Find the projects section by its id
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-          {/* Animated Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 z-0">
         <motion.div
           animate={{
@@ -56,12 +67,15 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-8"
         >
-          <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-full transition-colors">
+          <button 
+            onClick={scrollToProjects}
+            className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95"
+          >
             Get Started
           </button>
         </motion.div>
       </div>
-      </section>
+    </section>
   );
 };
 
