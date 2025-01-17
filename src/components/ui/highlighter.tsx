@@ -47,6 +47,7 @@ export const HighlightGroup: React.FC<HighlightGroupProps> = ({
   const [boxes, setBoxes] = useState<HTMLElement[]>([]);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     containerRef.current &&
       setBoxes(
         Array.from(containerRef.current.children).map(
@@ -164,6 +165,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const circles = useRef<any[]>([]);
   const mousePosition = useMousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });

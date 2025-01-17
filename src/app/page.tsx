@@ -1,17 +1,13 @@
 "use client"
-import Hero from '../components/Hero';
 import TeamSection from '../components/TeamSection';
 import SocialSection from '../components/SocialSection';
-import Navbar from '../components/Navbar';
 import AnimatedBackground from '../components/AnimatedBackground';
-import dotsbackground from '../components/dots-background';
 import CustomCursor from '../components/CustomCursor';
 import SectionTransition from '../components/SectionTransition';
 import ProjectsSection from '../components/ProjectsSection';
 import { NavBarDemo } from '@/components/nav2';
 import { Connect } from '@/components/contact';
 import SplineSceneBasic from '@/components/Hero2';
-
 
 export default function Home() {
   return (
@@ -21,7 +17,6 @@ export default function Home() {
           cursor: none !important;
         }
       `}</style>
-      <dots-background/>
       <CustomCursor />
       <AnimatedBackground />
       <NavBarDemo />
@@ -30,7 +25,7 @@ export default function Home() {
       </SectionTransition>
       
       <SectionTransition from="dark" to="dark">
-      <ProjectsSection />
+        <ProjectsSection />
       </SectionTransition>
 
       <SectionTransition from="dark" to="dark">
