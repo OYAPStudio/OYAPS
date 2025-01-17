@@ -99,7 +99,7 @@ const TeamSection = () => {
   ];
 
   return (
-    <section className="py-20 px-8 bg-gray-900">
+    <section id="US" className="py-20 px-8 bg-gray-900">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

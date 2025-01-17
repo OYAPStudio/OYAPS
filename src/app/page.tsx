@@ -7,6 +7,9 @@ import AnimatedBackground from '../components/AnimatedBackground';
 import CustomCursor from '../components/CustomCursor';
 import SectionTransition from '../components/SectionTransition';
 import ProjectsSection from '../components/ProjectsSection';
+import { NavBarDemo } from '@/components/nav2';
+import { Connect } from '@/components/contact';
+import SplineSceneBasic from '@/components/Hero2';
 
 
 export default function Home() {
@@ -19,14 +22,16 @@ export default function Home() {
       `}</style>
       <CustomCursor />
       <AnimatedBackground />
-      <Navbar />
-      
+      <NavBarDemo />
       <SectionTransition from="dark" to="dark">
-        <Hero />
+        <SplineSceneBasic />
       </SectionTransition>
       
       <SectionTransition from="dark" to="dark">
       <ProjectsSection />
+      </SectionTransition>
+      <SectionTransition from="dark" to="dark">
+        <Connect />
       </SectionTransition>
 
       <SectionTransition from="dark" to="dark">
