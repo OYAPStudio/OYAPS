@@ -27,7 +27,7 @@ const TeamSection = () => {
       role: "Web Designer & Cybersecurity Enthusiast",
       image: "/team/ali.png",
       portfolio: "https://speedo.oyaps.com",
-      email: "ali2005saad12@gmail.com",
+      email: "ali@oyaps.com",
       works: [
         {
           title: "SunWay Kindergarten",
@@ -57,7 +57,7 @@ const TeamSection = () => {
       role: "Web Designer & AI Developer",
       image: "/team/Yousif.jpg",
       portfolio: "https://nuk.oyaps.com",
-      email: "for.social.media2005@gmail.com",
+      email: "yousif@oyaps.com",
       works: [
         {
           title: "SunWay Kindergarten",
@@ -92,7 +92,7 @@ const TeamSection = () => {
       role: "Web Designer & Web Development",
       image: "/team/Ezalden.JPG",
       portfolio: "",
-      email: "ezaldenm6@gmail.com",
+      email: "ezalden@oyaps.com",
       works: [
         {
           title: "SunWay Kindergarten",
@@ -127,7 +127,7 @@ const TeamSection = () => {
       role: "AI Developer",
       image: "/team/Othman.jpg",
       portfolio: "",
-      email: "othman.yahya@ntu.edu.iq",
+      email: "othman@oyaps.com",
       works: [
         {
           title: "SunWay Kindergarten",

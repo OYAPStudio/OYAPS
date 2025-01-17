@@ -76,7 +76,7 @@ const SocialSection = () => {
               href="mailto:contact@oyaps.com"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              oyapsstudio@gmail.com
+              contact@oyaps.com
             </a>
           </p>
         </motion.div>
