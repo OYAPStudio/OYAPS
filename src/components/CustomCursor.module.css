@@ -1,0 +1,41 @@
+.cursor {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 0 6px #00f5ff);
+    animation: pulse 2s infinite;
+  }
+  
+  .cursor svg {
+    transform: rotate(140deg);
+    transform-origin: center;
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.7));
+    }
+    50% {
+      filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.9));
+    }
+    100% {
+      filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.7));
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: rotate(140deg) scale(1);
+    }
+    50% {
+      transform: rotate(140deg) scale(1.1);
+    }
+  }
+  
+  @media (pointer: coarse) {
+    .cursor {
+      display: none;
+    }
+  }
