@@ -4,6 +4,7 @@ import TeamSection from '../components/TeamSection';
 import SocialSection from '../components/SocialSection';
 import Navbar from '../components/Navbar';
 import AnimatedBackground from '../components/AnimatedBackground';
+import dotsbackground from '../components/dots-background';
 import CustomCursor from '../components/CustomCursor';
 import SectionTransition from '../components/SectionTransition';
 import ProjectsSection from '../components/ProjectsSection';
@@ -20,6 +21,7 @@ export default function Home() {
           cursor: none !important;
         }
       `}</style>
+      <dots-background/>
       <CustomCursor />
       <AnimatedBackground />
       <NavBarDemo />
@@ -30,6 +32,7 @@ export default function Home() {
       <SectionTransition from="dark" to="dark">
       <ProjectsSection />
       </SectionTransition>
+
       <SectionTransition from="dark" to="dark">
         <Connect />
       </SectionTransition>

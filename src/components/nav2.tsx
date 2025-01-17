@@ -100,7 +100,7 @@ export function NavBarDemo() {
               >
                 <Icon className={`
                   transition-all duration-300
-                  ${isHome && isActive ? '-translate-y-1' : ''}
+                  ${isHome && isActive ? '' : ''}
                   ${!isHome && isActive ? 'scale-110' : ''}
                 `} />
                 <span className={`

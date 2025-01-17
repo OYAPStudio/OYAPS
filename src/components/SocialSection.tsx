@@ -7,27 +7,27 @@ const SocialSection = () => {
     {
       platform: 'Instagram',
       url: 'https://instagram.com/oyaps',
-      icon: '/social/instagram.png'
+      icon: '/images/instagram.png'
     },
     {
       platform: 'Twitter',
       url: 'https://twitter.com/oyaps',
-      icon: '/social/twitter.png'
+      icon: '/images/x.png'
     },
     {
       platform: 'LinkedIn',
       url: 'https://linkedin.com/company/oyaps',
-      icon: '/social/linkedin.png'
+      icon: '/images/linkedin.png'
     },
     {
       platform: 'Telegram',
       url: 'https://t.me/oyaps',
-      icon: '/social/telegram.png'
+      icon: '/images/telegram.png'
     },
     {
       platform: 'GitHub',
       url: 'https://github.com/oyaps',
-      icon: '/social/github.png'
+      icon: '/images/github.png'
     }
   ];
 
@@ -38,7 +38,7 @@ const SocialSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold mb-12"
+          className="text-5xl font-bold mb-12 text-white"
         >
           Connect With Us
         </motion.h2>
@@ -56,13 +56,13 @@ const SocialSection = () => {
               whileHover={{ scale: 1.1 }}
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors p-4">
+              <div className="w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors p-4">
                 <div className="relative w-full h-full">
                   <Image
                     src={link.icon}
                     alt={`${link.platform} icon`}
                     fill
-                    className="object-contain filter brightness-0 invert opacity-80 group-hover:opacity-100"
+                    className="object-contain filter  opacity-80 group-hover:opacity-100"
                   />
                 </div>
               </div>

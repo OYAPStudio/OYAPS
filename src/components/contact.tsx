@@ -72,7 +72,6 @@ export function Connect() {
                     className="relative mx-auto h-[270px] w-[300px] md:h-[270px] md:w-[300px]"
                     ref={scope}
                   >
-                    <DIcons.Designali className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2" />
                     <div
                       id="next-js"
                       className="absolute bottom-12 left-14 rounded-3xl border border-slate-400 bg-slate-200 px-2 py-1.5 text-xs opacity-50 dark:border-slate-600 dark:bg-slate-800"
@@ -103,7 +102,7 @@ export function Connect() {
                         width="16.8"
                         height="18.2"
                         viewBox="0 0 12 13"
-                        className="fill-red-500"
+                        className="fill-cyan-500"
                         stroke="white"
                         strokeWidth="1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +114,7 @@ export function Connect() {
                         />
                       </svg>
                       <span className="bg-ali relative -top-1 left-3 rounded-3xl px-2 py-1 text-xs text-white">
-                        OYA
+                        OYAPS
                       </span>
                     </div>
                   </div>
@@ -123,12 +122,12 @@ export function Connect() {
                   <div className="-mt-20 flex h-full flex-col justify-center p-2 md:-mt-4 md:ml-10 md:w-[400px]">
                     <div className="flex flex-col items-center">
                       <h3 className="mt-6   pb-1 font-bold ">
-                        <span className="text-2xl md:text-4xl">
+                        <span className="text-2xl md:text-4xl text-white">
                           Ready To Turn Your Ideas Into Reality?
                         </span>
                       </h3>
                     </div>
-                    <p className="mb-4 text-slate-400">
+                    <p className="mb-4 text-white">
                       Feel free to reach out to us!
                     </p>
                     <div className="flex flex-wrap gap-2">

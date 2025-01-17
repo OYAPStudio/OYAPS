@@ -125,7 +125,7 @@ const ProjectsSection = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold text-center mb-8"
+        className="text-5xl font-bold text-center mb-8 text-white"
       >
         Our Projects
       </motion.h2>
@@ -204,7 +204,7 @@ const ProjectsSection = () => {
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{project.title}</h3>
+                  <h3 className="text-xl font-bold mb-4 text-white">{project.title}</h3>
                   <p className="text-gray-300 mb-4">{project.description}</p>
                   
                   <div className="mb-4">

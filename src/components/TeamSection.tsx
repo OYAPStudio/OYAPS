@@ -104,7 +104,7 @@ const TeamSection = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold text-center mb-16"
+        className="text-5xl font-bold text-center mb-16 text-white"
       >
         Our Team
       </motion.h2>
@@ -129,7 +129,7 @@ const TeamSection = () => {
               />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+              <h3 className="text-xl font-bold mb-2 text-white">{member.name}</h3>
               <p className="text-cyan-400 mb-4">{member.role}</p>
               <a
                 href={member.portfolio}
@@ -195,7 +195,7 @@ const TeamSection = () => {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-2">{selectedMember.name}</h3>
+                <h3 className="text-2xl font-bold mb-2 text-white">{selectedMember.name}</h3>
                 <p className="text-cyan-400 mb-4">{selectedMember.role}</p>
                 <a
                   href={`mailto:${selectedMember.email}`}
@@ -203,11 +203,11 @@ const TeamSection = () => {
                 >
                   {selectedMember.email}
                 </a>
-                <h4 className="text-xl font-bold mb-4">Recent Works</h4>
+                <h4 className="text-xl font-bold mb-4 text-white">Recent Works</h4>
                 <div className="space-y-4">
                   {selectedMember.works.map((work, index) => (
                     <div key={index} className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-                      <h5 className="font-bold mb-2">{work.title}</h5>
+                      <h5 className="font-bold mb-2 text-white">{work.title}</h5>
                       <p className="text-gray-300 mb-2">{work.description}</p>
                       <a
                         href={work.link}
