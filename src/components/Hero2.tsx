@@ -1,19 +1,19 @@
 'use client'
 
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Card } from "@/components/ui/card"
 import { SplineScene } from "@/components/ui/splite"
 import { DotPattern } from "@/components/ui/dot-pattern"
 
-// Animation variants for reusability and consistency
+// Animation variants remain the same
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 }
 }
 
-// Gradient overlay component for better reusability
+// Previous components remain the same
 const GradientOverlay = memo(function GradientOverlay() {
   return (
     <>
@@ -24,7 +24,6 @@ const GradientOverlay = memo(function GradientOverlay() {
   )
 })
 
-// Logo component for better organization
 const Logo = memo(function Logo() {
   return (
     <motion.div
@@ -48,7 +47,6 @@ const Logo = memo(function Logo() {
   )
 })
 
-// Hero content component
 const HeroContent = memo(function HeroContent({ onGetStarted }: { onGetStarted: () => void }) {
   return (
     <>
@@ -85,20 +83,54 @@ const HeroContent = memo(function HeroContent({ onGetStarted }: { onGetStarted: 
   )
 })
 
-// Spline scene wrapper component
+// Updated SplineWrapper component with conditional rendering
 const SplineWrapper = memo(function SplineWrapper() {
+  const [isMobile, setIsMobile] = useState(true)
+  
+  useEffect(() => {
+    // Function to check if viewport is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // 768px is our md breakpoint
+    }
+    
+    // Initial check
+    checkMobile()
+    
+    // Add event listener for resize
+    window.addEventListener('resize', checkMobile)
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <div className="w-full md:w-1/2 h-[300px] md:h-full relative z-10">
       <div className="absolute bottom-0 left-0 right-0 h-32 z-20 bg-gradient-to-t from-gray-900 to-transparent" />
-      <SplineScene 
-        scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-        className="w-full h-full"
-      />
+      
+      {isMobile ? (
+        // Image for mobile devices
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-3d.png" // Make sure to export your 3D scene as an image and save it here
+            alt="OYAPS Studio 3D Scene"
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+        </div>
+      ) : (
+        // 3D model for larger screens
+        <SplineScene 
+          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          className="w-full h-full"
+        />
+      )}
     </div>
   )
 })
 
-// Main component
+// Main component remains the same
 function SplineSceneBasic() {
   const scrollToProjects = useCallback(() => {
     const projectsSection = document.getElementById('projects')
@@ -110,7 +142,6 @@ function SplineSceneBasic() {
 
   return (
     <Card className="w-full min-h-[500px] md:h-[600px] lg:h-[700px] bg-gray-900 relative overflow-hidden">
-      {/* Background pattern */}
       <div className="absolute inset-0 z-0">
         <DotPattern
           cy={1}
@@ -120,17 +151,14 @@ function SplineSceneBasic() {
         />
       </div>
 
-      {/* Gradient overlays */}
       <GradientOverlay />
 
       <div className="flex flex-col md:flex-row h-full">
-        {/* Left content */}
         <div className="w-full md:w-1/2 p-4 md:p-8 lg:p-12 relative z-10 flex flex-col justify-center mt-8 md:mt-0 items-center">
           <Logo />
           <HeroContent onGetStarted={scrollToProjects} />
         </div>
 
-        {/* Right content */}
         <SplineWrapper />
       </div>
     </Card>

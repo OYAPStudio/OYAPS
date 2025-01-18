@@ -7,7 +7,7 @@ import SectionTransition from '../components/SectionTransition';
 import ProjectsSection from '../components/ProjectsSection';
 import { NavBarDemo } from '@/components/nav2';
 import { Connect } from '@/components/contact';
-import SplineSceneBasic from '@/components/Hero';
+import SplineSceneBasic from '@/components/Hero2';
 
 export default function Home() {
   return (
