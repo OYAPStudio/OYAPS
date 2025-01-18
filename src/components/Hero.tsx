@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const Hero = () => {
+const SplineSceneBasic = () => {
   const scrollToProjects = () => {
     // Find the projects section by its id
     const projectsSection = document.getElementById('projects');
@@ -80,4 +80,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default SplineSceneBasic;
