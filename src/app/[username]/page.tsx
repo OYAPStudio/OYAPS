@@ -1,6 +1,7 @@
 // src/app/[username]/page.tsx
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import Image from 'next/image';
+import type { Metadata } from 'next';
 
 // Mock data interface
 interface MemberData {
@@ -22,8 +23,13 @@ interface MemberData {
     instagram?: string;
   };
 }
+interface PageProps {
+    params: {
+      username: string;
+    };
+  }
 
-// Mock data function - replace with your API call
+// Mock data function - replace with actual API call
 async function getMemberData(username: string): Promise<MemberData | null> {
   const mockMembers: Record<string, MemberData> = {
     'ali': {
@@ -102,37 +108,54 @@ async function getMemberData(username: string): Promise<MemberData | null> {
   return mockMembers[username] || null;
 }
 
+// Use a simple type for params
+// @typescript-eslint/no-unused-vars
+
 // Generate metadata
-export async function generateMetadata({ params }: { params: { username: string } }) {
-  const username = params?.username;
+export async function generateMetadata(
+  { params }: { params: { username: string } }
+): Promise<Metadata> {
+  const username = params.username;
+  
   if (!username) {
-    return { title: 'Member Not Found', description: 'Member profile not found' };
+    return {
+      title: 'Member Not Found',
+      description: 'Member profile not found',
+    };
   }
-  
+
   const member = await getMemberData(username);
-  if (!member) {
-    return { title: 'Member Not Found', description: 'Member profile not found' };
-  }
   
+  if (!member) {
+    return {
+      title: 'Member Not Found',
+      description: 'Member profile not found',
+    };
+  }
+
   return {
     title: `${member.fullName} | OYAPS`,
     description: `${member.fullName}'s profile on OYAPS`,
   };
 }
 
-export default async function MemberProfilePage({ params }: { params: { username: string } }) {
-  const username = params?.username;
-  if (!username) {
-    notFound();
-  }
-  
-  const member = await getMemberData(username);
-  if (!member) {
-    notFound();
-  }
+// Use "any" for the params to avoid TypeScript errors
+
+export default async function Page({ params }: PageProps) {
+    const username = params.username;
+    
+    if (!username) {
+      notFound();
+    }
+    
+    const member = await getMemberData(username);
+    
+    if (!member) {
+      notFound();
+    }
 
   // Banner image path
-  const bannerImagePath = '/team/OYAPS-Iconic-1.png'; // Using the banner from your website
+  const bannerImagePath = '/images/hero-3d.png'; // Using the banner from your website
 
   return (
     <div className="min-h-screen bg-[#0a0f1a] text-white">
@@ -140,13 +163,18 @@ export default async function MemberProfilePage({ params }: { params: { username
       <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#2d3859] h-40 rounded-b-lg relative overflow-hidden">
           {/* Banner image */}
-          <img 
-            src={bannerImagePath} 
-            alt="Profile Banner" 
-            className="w-full h-full object-cover opacity-50"
-          />
+          <div className="absolute inset-0">
+            <Image 
+              src={bannerImagePath} 
+              alt="Profile Banner"
+              fill
+              sizes="100vw"
+              priority
+              className="object-cover opacity-20"
+            />
+          </div>
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2d3859] to-[#1e293b] opacity-30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#2d3859] to-[#1e293b] opacity-80"></div>
         </div>
       </div>
       
@@ -154,8 +182,13 @@ export default async function MemberProfilePage({ params }: { params: { username
       <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* Profile info with avatar */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mt-6 mb-6">
-          <div className="flex-shrink-0">
-            <img src={member.avatar} alt={member.fullName} className="h-24 w-24 rounded-full object-cover border-2 border-[#00b8d9]" />
+          <div className="flex-shrink-0 relative h-24 w-24">
+            <Image 
+              src={member.avatar} 
+              alt={member.fullName} 
+              fill
+              className="rounded-full object-cover border-2 border-[#00b8d9]" 
+            />
           </div>
           
           <div className="flex flex-col items-center sm:items-start flex-grow">
@@ -192,7 +225,7 @@ export default async function MemberProfilePage({ params }: { params: { username
                 <a href={member.social.instagram} target="_blank" rel="noopener noreferrer" 
                    className="text-gray-300 hover:text-white">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153a4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
                   </svg>
                 </a>
               )}
@@ -245,7 +278,7 @@ export default async function MemberProfilePage({ params }: { params: { username
                 <div className="flex items-center py-3 text-white">
                   <svg className="w-5 h-5 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998a12.078 12.078 0 01.665-6.479L12 14z"></path>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998a12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
                   </svg>
                   <span>{member.university}</span>
