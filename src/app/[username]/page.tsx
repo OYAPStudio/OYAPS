@@ -3,6 +3,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
+
 // Mock data interface
 interface MemberData {
   username: string;
